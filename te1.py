@@ -7,7 +7,7 @@ Created on Tue Jan  7 13:47:54 2020
 """
 import os
 import fastai
-
+from PIL import Image
 from fastai.vision import *
 from pathlib import Path
 
@@ -62,14 +62,19 @@ os.chdir(path_img)
 learn, data = get_model_data(Path(path))
 learn = learn.to_fp32()    
 
-
+with open('scenesshots.csv','wb') as file:
+    for line in text:
+        file.write(line)
+        file.write('\n')
 
 
 os.chdir(path_img)
-for file in tests[:33]:
+for file in tests[:3]:
     img = open_image(file)
     img.show(figsize = (6, 8), title = str(learn.predict(img)[0]))
     
+#    img.save('/home/pete/shot/3/a.jpg')
+#    pil_image.save("./cuts3/{}.jpg")
 
     
     
